@@ -70,7 +70,14 @@ def send_email():
     subject = request.form.get('subject', 'No Subject')
     receiver_address = request.form.get('to', '')  # Dirección del destinatario
     bcc_address = 'informesmedicospericiales@gmail.com'
+    firma_html = """
+    <div class="default-style">
+        <img id="0e70ed49-e52c-4efd-ac95-eab14cbbcb5b" class="aspect-ratio" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;" src="/appsuite/api/image/mail/picture?folder=default0%2FElementos+enviados&amp;id=1732959057263756228&amp;uid=0e70ed49-e52c-4efd-ac95-eab14cbbcb5b" alt="" width="362" height="121">
+    </div>
+    """
     
+    # Concatena el contenido del correo con la firma HTML
+    mail_content_con_firma = f"{mail_content}{firma_html}"
     host = 'smtp.ionos.es'
     port = 587
     sender_address = 'info@informesmedicospericiales.com'  # Dirección de correo IONOS
@@ -83,8 +90,8 @@ def send_email():
     message['Subject'] = subject
 
     # Adjuntar el cuerpo del correo
-    message.attach(MIMEText(mail_content, 'plain'))
-
+    # message.attach(MIMEText(mail_content, 'plain'))
+    message.attach(MIMEText(mail_content_con_firma, 'html'))
     # Verificar si se incluye un archivo adjunto
     if 'file' in request.files:
         file = request.files['file']
