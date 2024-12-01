@@ -71,8 +71,8 @@ def send_email():
     receiver_address = request.form.get('to', '')  # Dirección del destinatario
     bcc_address = 'informesmedicospericiales@gmail.com'
     firma_html = """
-    <div>
-    <a href="https://informesmedicospericiales.com" target="_blank" style="text-align:center; font-weight: bold;">https://informesmedicospericiales.com</a>
+    <div style="text-align:center;">
+    <a href="https://informesmedicospericiales.com" target="_blank" style="font-weight: bold;">https://informesmedicospericiales.com</a>
     </div>
     <br>
     <div class="default-style">
