@@ -71,9 +71,17 @@ def send_email():
     receiver_address = request.form.get('to', '')  # Dirección del destinatario
     bcc_address = 'informesmedicospericiales@gmail.com'
     firma_html = """
-    <div class="default-style">
-        <img id="0e70ed49-e52c-4efd-ac95-eab14cbbcb5b" class="aspect-ratio" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;" src="/appsuite/api/image/mail/picture?folder=default0%2FElementos+enviados&amp;id=1732959057263756228&amp;uid=0e70ed49-e52c-4efd-ac95-eab14cbbcb5b" alt="" width="362" height="121">
+    <div>
+    <a href="https://informesmedicospericiales.com" target="_blank">https://informesmedicospericiales.com</a>
     </div>
+    <br>
+    <div class="default-style">
+        <img id="0e70ed49-e52c-4efd-ac95-eab14cbbcb5b" class="aspect-ratio" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;" src="https://informesmedicospericiales.com/wp-content/uploads/picture-scaled.jpg" alt="" width="362" height="121">
+    </div><br>
+    <p>
+    En virtud de la ley 34/2002 LSSI-CE, este mensaje y sus archivos adjuntos pueden contener información confidencial, por lo que se informa de que su uso no autorizado está prohibido por la ley, además se encuentran protegidos por la Constitución Española, que garantiza la confidencialidad, protección y secreto de las comunicaciones. Si ha recibido este mensaje por equivocación, por favor informe de ello inmediatamente a través de esta misma vía y borre el mensaje original junto con sus ficheros adjuntos sin leerlo o grabarlo total o parcialmente.
+    Conforme a lo establecido en el Reglamento General de Protección de Datos o RGPD, le informamos que los datos personales que consten en esta comunicación son responsabilidad de Lukeraibra SL con la finalidad de gestionar la relación con nuestros clientes y contactos en relación al ejercicio de nuestra actividad, todo ello bajo la legitimación otorgada por consentimiento expreso de la propia persona interesada y/o con base en la ejecución de un contrato de servicios. No se ceden datos a terceras personas salvo obligaciones legales. En cuanto a sus derechos podrá acceder, rectificar y suprimir los datos, limitarlos o incluso oponerse a su tratamiento, entre otros derechos, mediante solicitud dirigida a esta dirección de email o por correo postal a Calle De la Lírica, 13, CP 28905 Getafe, Madrid
+    </p>
     """
     
     # Concatena el contenido del correo con la firma HTML
