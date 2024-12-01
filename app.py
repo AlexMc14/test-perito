@@ -72,7 +72,7 @@ def send_email():
     bcc_address = 'informesmedicospericiales@gmail.com'
     firma_html = """
     <div>
-    <a href="https://informesmedicospericiales.com" target="_blank">https://informesmedicospericiales.com</a>
+    <a href="https://informesmedicospericiales.com" target="_blank" style="text-align:center; font-weight: bold;">https://informesmedicospericiales.com</a>
     </div>
     <br>
     <div class="default-style">
