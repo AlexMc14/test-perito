@@ -102,25 +102,45 @@ def send_email():
     # message.attach(MIMEText(mail_content, 'plain'))
     message.attach(MIMEText(mail_content_con_firma, 'html'))
     # Verificar si se incluye un archivo adjunto
-    if 'file' in request.files:
-        file = request.files['file']
-        file_name = file.filename
+    # if 'file' in request.files:
+    #     file = request.files['file']
+    #     file_name = file.filename
 
-        # Leer el archivo adjunto
-        attachment = file.read()
+    #     # Leer el archivo adjunto
+    #     attachment = file.read()
 
-        # Crear el adjunto MIMEBase
-        attach = MIMEBase('application', 'octet-stream')
-        attach.set_payload(attachment)
+    #     # Crear el adjunto MIMEBase
+    #     attach = MIMEBase('application', 'octet-stream')
+    #     attach.set_payload(attachment)
 
-        # Codificar el adjunto en Base64
-        encoders.encode_base64(attach)
+    #     # Codificar el adjunto en Base64
+    #     encoders.encode_base64(attach)
 
-        # Agregar encabezado con el nombre del archivo
-        attach.add_header('Content-Disposition', f'attachment; filename= {file_name}')
+    #     # Agregar encabezado con el nombre del archivo
+    #     attach.add_header('Content-Disposition', f'attachment; filename= {file_name}')
 
-        # Adjuntar el archivo al mensaje
-        message.attach(attach)
+    #     # Adjuntar el archivo al mensaje
+    #     message.attach(attach)
+    if 'files' in request.files:
+        for file_key in request.files:
+            file = request.files[file_key]
+            file_name = file.filename
+
+            # Leer el archivo adjunto
+            attachment = file.read()
+
+            # Crear el adjunto MIMEBase
+            attach = MIMEBase('application', 'octet-stream')
+            attach.set_payload(attachment)
+
+            # Codificar el adjunto en Base64
+            encoders.encode_base64(attach)
+
+            # Agregar encabezado con el nombre del archivo
+            attach.add_header('Content-Disposition', f'attachment; filename= {file_name}')
+
+            # Adjuntar el archivo al mensaje
+            message.attach(attach)
 
     try:
         # Configurar la sesión SMTP
