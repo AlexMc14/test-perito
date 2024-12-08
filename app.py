@@ -121,26 +121,62 @@ def send_email():
 
     #     # Adjuntar el archivo al mensaje
     #     message.attach(attach)
-    if 'file' in request.files:
-        for file_key in request.files:
-            file = request.files[file_key]
-            file_name = file.filename
+    # if 'file' in request.files:
+    #     for file_key in request.files:
+    #         file = request.files[file_key]
+    #         file_name = file.filename
 
+    #         # Leer el archivo adjunto
+    #         attachment = file.read()
+
+    #         # Crear el adjunto MIMEBase
+    #         attach = MIMEBase('application', 'octet-stream')
+    #         attach.set_payload(attachment)
+
+    #         # Codificar el adjunto en Base64
+    #         encoders.encode_base64(attach)
+
+    #         # Agregar encabezado con el nombre del archivo
+    #         attach.add_header('Content-Disposition', f'attachment; filename= {file_name}')
+
+    #         # Adjuntar el archivo al mensaje
+    #         message.attach(attach)
+    if 'file' in request.files:
+    for file_key in request.files:
+        file = request.files[file_key]
+        file_name = file.filename
+
+        # Verificar que el archivo no esté vacío
+        if file and file_name:
             # Leer el archivo adjunto
             attachment = file.read()
+            if not attachment:
+                print(f"El archivo {file_name} está vacío.")
+                continue
+
+            # Detectar el tipo MIME del archivo
+            mime_type, _ = mimetypes.guess_type(file_name)
+            if mime_type:
+                main_type, sub_type = mime_type.split('/')
+            else:
+                main_type, sub_type = 'application', 'octet-stream'
 
             # Crear el adjunto MIMEBase
-            attach = MIMEBase('application', 'octet-stream')
+            attach = MIMEBase(main_type, sub_type)
             attach.set_payload(attachment)
 
             # Codificar el adjunto en Base64
             encoders.encode_base64(attach)
 
+            # Crear un nombre único para evitar conflictos
+            unique_file_name = f"{uuid.uuid4()}_{file_name}"
+
             # Agregar encabezado con el nombre del archivo
-            attach.add_header('Content-Disposition', f'attachment; filename= {file_name}')
+            attach.add_header('Content-Disposition', f'attachment; filename="{unique_file_name}"')
 
             # Adjuntar el archivo al mensaje
             message.attach(attach)
+            print(f"Archivo {file_name} adjuntado correctamente.")
 
     try:
         # Configurar la sesión SMTP
