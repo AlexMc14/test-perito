@@ -121,7 +121,7 @@ def send_email():
 
     #     # Adjuntar el archivo al mensaje
     #     message.attach(attach)
-    if 'files' in request.files:
+    if 'file' in request.files:
         for file_key in request.files:
             file = request.files[file_key]
             file_name = file.filename
