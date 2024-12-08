@@ -137,11 +137,11 @@ def send_email():
             encoders.encode_base64(attach)
 
             # Agregar encabezado con el nombre del archivo
-            # attach.add_header('Content-Disposition', f'attachment; filename= {file_name}')
-            unique_file_name = f"{uuid.uuid4()}_{file_name}"
+            attach.add_header('Content-Disposition', f'attachment; filename= {file_name}')
+            # unique_file_name = f"{uuid.uuid4()}_{file_name}"
     
             # Agregar encabezado con el nombre del archivo
-            attach.add_header('Content-Disposition', f'attachment; filename="{unique_file_name}"')
+            # attach.add_header('Content-Disposition', f'attachment; filename="{unique_file_name}"')
 
             # Adjuntar el archivo al mensaje
             message.attach(attach)
