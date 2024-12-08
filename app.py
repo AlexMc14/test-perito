@@ -66,7 +66,8 @@ def upload_file():
 # Endpoint para enviar correos
 @app.route('/send-email', methods=['POST'])
 def send_email():
-    mail_content = request.form.get('text', '')
+    # mail_content = request.form.get('text', '')
+    mail_content = request.form.get('text', '').replace('\n', '<br>')
     subject = request.form.get('subject', 'No Subject')
     receiver_address = request.form.get('to', '')  # Dirección del destinatario
     bcc_address = 'informesmedicospericiales@gmail.com'
