@@ -89,8 +89,9 @@ def send_email():
     mail_content_con_firma = f"{mail_content}{firma_html}"
     host = 'smtp.ionos.es'
     port = 587
-    sender_address = 'info@informesmedicospericiales.com'  # Dirección de correo IONOS
-    sender_password = 'rrpy1Jf7OKvOnEu'  # Contraseña de correo IONOS
+    sender_address = 'info@informesmedicospericiales.com'
+    # sender_password = 'rrpy1Jf7OKvOnEu'
+    sender_password = 'Lukeraibra@1'
 
     # Crear el mensaje del correo
     message = MIMEMultipart()
